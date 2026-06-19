@@ -1,0 +1,220 @@
+/* ===================================================================
+   Dashboard Dark Theme and Layout Styles
+   =================================================================== */
+
+:root {
+    --dashboard-bg: #1f2732; /* Main dark background */
+    --card-bg: #2b3542; /* Card background slightly lighter */
+    --border-color: #3b4d63; /* Subtle, professional border color */
+    --text-primary: #e6e6e6;
+    --text-secondary: #a9b5c7;
+    --accent-color: #00c2ff; /* Bright blue for accents/values */
+    --success-color: #4CAF50;
+    --error-color: #FF5252;
+}
+
+.dark-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--dashboard-bg);
+    min-height: calc(100vh - 140px);
+    color: var(--text-primary);
+}
+
+/* --- Card Base Style --- */
+.dark-dashboard-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.content-placeholder {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    padding: 10px;
+    border: 1px dashed var(--border-color);
+    border-radius: 6px;
+}
+
+/* ===================================================================
+   SECTION 1: Top Metrics and Map (3-column primary structure)
+   =================================================================== */
+
+.dark-dashboard-row-top {
+    display: grid;
+    /* Column Ratios: Stats Grid | Map Area */
+    grid-template-columns: 1.2fr 1.2fr ; 
+    gap: 20px;
+    height: 400px; 
+}
+
+/* Stats Grid (Container for all 4 top-left metrics) */
+.dark-dashboard-stats-grid {
+    display: grid;
+    /* 2 rows for vertical stack, 2 columns for large/small split */
+    grid-template-columns: 1.2fr 1.2fr 1fr ; 
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+}
+
+/* Large Stat Cards (Left side of the stat grid) */
+.main-stat-card {
+    align-items: flex-start;
+    justify-content: center;
+}
+.main-stat-card:nth-child(odd) { /* First large card */
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+}
+.main-stat-card:nth-child(even) { /* Second large card */
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
+
+/* Small Stat Cards (Right side of the stat grid - top and bottom) */
+.small-stat-card {
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+.small-stat-card:nth-child(3) { /* Small card 1 (Top-Middle-Top) */
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+}
+.small-stat-card:nth-child(4) { /* Small card 2 (Top-Middle-Bottom) */
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
+/* Stat Card Typography */
+.card-value {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+.large-value {
+    font-size: 2.8em;
+}
+.card-detail {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+.card-detail.success {
+    color: var(--success-color);
+}
+.primary-view-card {
+    padding: 15px;
+}
+.map-placeholder {
+    height: 100%;
+    margin-top: 15px;
+    border: none;
+    background-color: #1a2028; /* Darker placeholder for map */
+}
+
+
+/* ===================================================================
+   SECTION 2: Bottom Charts (3-column structure)
+   =================================================================== */
+
+.dark-dashboard-row-bottom {
+    display: grid;
+    /* Column Ratios: Chart 1 | Chart 2 | Chart 3 (Largest) */
+    grid-template-columns: 1.2fr 1.4fr 1.8fr;
+    gap: 20px;
+    flex-grow: 1;
+    min-height: 350px; 
+    margin-top:10px;
+}
+
+/* Placeholder styles for charts */
+.chart-card-large {
+    grid-column: 3 / 4; /* Ensures the largest box is on the right */
+}
+.chart-placeholder {
+    border: none;
+}
+
+
+/* ===================================================================
+   Responsive Adjustments
+   =================================================================== */
+
+@media (max-width: 1200px) {
+    /* Tablet View: Map moves to the bottom of the top row, taking full width */
+    .dark-dashboard-row-top {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .dark-dashboard-stats-grid {
+        /* Stats now take full width and wrap */
+        grid-column: 1 / -1; 
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto; /* Allow rows to size based on content */
+    }
+    
+    .main-stat-card:nth-child(odd),
+    .main-stat-card:nth-child(even),
+    .small-stat-card:nth-child(3),
+    .small-stat-card:nth-child(4) {
+        grid-row: auto;
+        grid-column: auto;
+    }
+
+    .dark-dashboard-card {
+        min-height: 120px;
+    }
+
+    /* Stack bottom charts more simply */
+    .dark-dashboard-row-bottom {
+        grid-template-columns: 1fr 1fr;
+    }
+    .chart-card-large {
+        grid-column: 1 / -1; /* Large chart takes full width on the bottom row */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile View: All elements stack vertically */
+    .dark-dashboard-container {
+        padding: 10px;
+        gap: 15px;
+    }
+    .dark-dashboard-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .dark-dashboard-row-bottom {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .main-stat-card,
+    .small-stat-card,
+    .chart-card-large {
+        grid-column: 1 / -1;
+    }
+}                                                       

@@ -1,0 +1,74 @@
+/* src/styles/MapSection.css */
+
+/* --- Map Container Styles --- */
+.map-container {
+    /* Ensures the map takes 100% of its parent's dimensions */
+    height: 100%;
+    width: 100%;
+    border-radius: 8px; /* Assuming rounded-lg from Tailwind */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Assuming shadow-lg from Tailwind */
+}
+
+/* --- InfoWindow Styles (for Google Maps custom content) --- */
+
+.info-window-card {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 12px;
+    border-radius: 12px;
+    background: #0F2A4D; /* Dark Blue */
+    color: #FFFFFF;
+    min-width: 240px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #1B3A63;
+}
+
+.info-window-heading {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    color: #00C2FF; /* Light Blue/Cyan */
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.info-window-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.info-window-td {
+    padding: 4px 6px;
+    vertical-align: top;
+}
+
+.info-window-img {
+    width: 100%;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* --- Lightbox Styles (for Handhole Image) --- */
+
+/* Note: The lightbox is created outside React in the component, but we'll include its styles here for reference */
+.lightbox-modal {
+    /* These styles should be applied dynamically via JS when creating the modal */
+    /*
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: zoom-out;
+    */
+}
